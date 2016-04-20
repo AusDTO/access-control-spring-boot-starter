@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-<title>User details</title>
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-  href="../../css/bootstrap.min.css" />
+  <title>User details</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
 </head>
-<body onload="document.f.username.focus();">
+<body>
   <div class="container">
     <div class="navbar">
       <div class="navbar-inner">

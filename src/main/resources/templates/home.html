@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-<title th:text="${title}">Title</title>
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-	href="../../css/bootstrap.min.css" />
+  <title th:text="${title}">Title</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
 </head>
 <body>
 	<div class="container">
@@ -11,21 +11,21 @@
 			<div class="navbar-inner">
 				<a class="brand" href="http://www.thymeleaf.org"> Thymeleaf -	Plain </a>
 				<ul class="nav">
-          <li th:if="${currentUser eq null}"><a href="/login">Log in</a></li>
+          <li th:if="${currentUser eq null}"><a href="/login">Sign in</a></li>
 					<li th:if="${currentUser}"><a th:href="@{/}" href="home.html"> Home </a></li>
           <li th:if="${currentUser ne null and currentUser.admin eq false}"><a th:href="@{'/user/' + ${currentUser.id} + '/change-password'}">Change password</a></li>
           <li th:if="${currentUser ne null and currentUser.admin}"><a th:href="@{'/user/' + ${currentUser.id}}"> Profile </a></li>
           <li th:if="${currentUser ne null and currentUser.admin}"><a th:href="@{/admin/user/create}"> Add user </a></li>
           <li th:if="${currentUser ne null and currentUser.admin}"><a th:href="@{/admin/user/list}"> List users </a></li>
-					<li th:if="${currentUser}"><a href="#" onclick="document.getElementById('logoutForm').submit();"> Logout </a></li>
+					<li th:if="${currentUser}"><a href="#" onclick="document.getElementById('logoutForm').submit();"> Sign out </a></li>
 				</ul>
 			</div>
 		</div>
-		<h1 th:text="${title}">Title</h1>
-		<div th:text="${message}">Fake content</div>
+    <h1 th:if="${currentUser eq null}">Hello World!</h1>
+    <h1 th:if="${currentUser}" th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
     <div>
-      <form name="form" id="logoutForm" action="/login?logout" method="POST" style="display: none !important; visibility: hidden;">
-        <input type="submit" id="logout" value="Logout" />
+      <form name="form" id="logoutForm" action="/logout" method="POST" style="display: none !important; visibility: hidden;">
+        <input type="submit" id="logout" value="logout" />
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
       </form>
      </div>

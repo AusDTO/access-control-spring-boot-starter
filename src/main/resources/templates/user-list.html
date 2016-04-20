@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-<title>Users</title>
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-  href="../../css/bootstrap.min.css" />
+  <title>Users</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
 </head>
 <body>
   <div class="container">
@@ -12,7 +12,6 @@
         <a class="brand" href="http://www.thymeleaf.org"> Thymeleaf - Plain </a>
         <ul class="nav">
           <li><a th:href="@{/}" href="home.html"> Home </a></li>
-          <li><a th:href="@{/login?logout}" href="#" onclick="document.getElementById('logoutForm').submit();"> Logout </a></li>
         </ul>
       </div>
     </div>
