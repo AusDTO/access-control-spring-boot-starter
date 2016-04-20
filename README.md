@@ -1,5 +1,14 @@
 # access-control-spring-boot-starter
-This guide walks you through the process of creating a simple web application with resources that are protected by Spring Security.
+
+The security was originally based on http://kielczewski.eu/2014/12/spring-boot-security-application/ with the following enhancements:
+
+* Change password will be available for all users
+* Admin users can reset and deactivate other user accounts
+* User lockout after a number of failed login attempts
+* Unique CSRF token per request
+* Audit logging
+
+The new starter component access-control-spring-boot-starter will have all functionality available by default but can be switched on or off and configured via application.properties
 
 ### Getting Started
 
