@@ -16,6 +16,7 @@
       </div>
     </div>
     <h1 th:text="${title}">Title</h1>
+    <p th:if="${success}" class="alert alert-success" th:text="${success}"></p>
     <table>
       <thead>
         <tr>
@@ -25,7 +26,7 @@
       </thead>
       <tbody>
         <tr th:each="user : ${users}">
-          <td th:text="${user.email}"><a href="/user/${user.id}">email</a></td>
+          <td th:inline="text"><a th:href="@{'/user/' + ${user.id}}">[[${user.email}]]</a></td>
           <td th:text="${user.role}">role</td>
         </tr>
       </tbody>
