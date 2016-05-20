@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.csrf.InvalidCsrfTokenException;
+import org.springframework.security.web.csrf.MissingCsrfTokenException;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
@@ -22,19 +24,27 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
             throws IOException, ServletException {
 
         if (!response.isCommitted()) {
-            if (errorPage != null) {
-                // Put exception into request scope (perhaps of use to a view)
-                request.setAttribute(WebAttributes.ACCESS_DENIED_403, accessDeniedException);
-
-                // Set the 403 status code.
-                response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-
-                // forward to error page.
-                RequestDispatcher dispatcher = request.getRequestDispatcher(errorPage);
-                dispatcher.forward(request, response);
+            if (accessDeniedException instanceof MissingCsrfTokenException) {
+                request.getSession().setAttribute("status", "timedout");
+                response.sendRedirect("/login");
+            } else if (accessDeniedException instanceof InvalidCsrfTokenException) {
+                request.getSession().setAttribute("status", "logout");
+                response.sendRedirect("/login");
             } else {
-                response.sendError(HttpServletResponse.SC_FORBIDDEN,
-                                   accessDeniedException.getMessage());
+                if (errorPage != null) {
+                    // Put exception into request scope (perhaps of use to a view)
+                    request.setAttribute(WebAttributes.ACCESS_DENIED_403, accessDeniedException);
+
+                    // Set the 403 status code.
+                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+
+                    // forward to error page.
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(errorPage);
+                    dispatcher.forward(request, response);
+                } else {
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN,
+                                       accessDeniedException.getMessage());
+                }
             }
         }
     }

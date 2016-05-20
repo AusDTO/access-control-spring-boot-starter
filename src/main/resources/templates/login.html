@@ -17,6 +17,7 @@
 		</div>
 		<div class="content">
 			<p th:if="${logout}" class="alert">You have been logged out</p>
+      <p th:if="${locked}" class="alert alert-error">Your account has been Locked</p>
 			<p th:if="${error}" class="alert alert-error">There was an error, please try again</p>
 			<h2>Login with Email and Password</h2>
 			<form name="form" action="/login" method="POST">
