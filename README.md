@@ -35,3 +35,26 @@ mvn spring-boot:run
 ```
 
 * Point your browser to http://localhost:8080/
+
+### Use in another project
+
+To get the security module into your build
+
+* Add the JitPack repository to your build file
+```
+  <repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+```
+
+* Add the dependency
+```
+    <dependency>
+        <groupId>com.github.AusDTO</groupId>
+        <artifactId>access-control-spring-boot-starter</artifactId>
+        <version>v1.0.0</version>
+    </dependency>
+```
