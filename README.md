@@ -12,7 +12,7 @@ The new starter component access-control-spring-boot-starter will have all funct
 
 ### Getting Started
 
-A [quick guide](https://github.com/AusDTO/access-control-spring-boot-starter/wiki/Getting-Started) to get started can be found in our wikis.
+A [quick guide](https://github.com/tuongl/access-control-spring-boot-starter/wiki/Getting-Started) to get started can be found in our wikis.
 
 ### Requirements
 
@@ -24,7 +24,7 @@ A [quick guide](https://github.com/AusDTO/access-control-spring-boot-starter/wik
 * Clone the repository
 
 ```shell
-git clone https://github.com/AusDTO/access-control-spring-boot-starter.git
+git clone https://github.com/tuongl/access-control-spring-boot-starter.git
 ```
 
 * Start the application
@@ -53,7 +53,7 @@ To get the security module into your build
 * Add the dependency
 ```
     <dependency>
-        <groupId>com.github.AusDTO</groupId>
+        <groupId>com.github.tuongl</groupId>
         <artifactId>access-control-spring-boot-starter</artifactId>
         <version>v1.0.0</version>
     </dependency>
